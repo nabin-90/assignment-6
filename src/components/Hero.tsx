@@ -1,3 +1,4 @@
+import { FiArrowDown } from "react-icons/fi";
 import Image from "next/image";
 import Link from "next/link";
 import { Oswald } from "next/font/google";
@@ -35,6 +36,7 @@ const Hero = () => {
             className="mt-9 inline-flex items-center gap-3 rounded-3xl bg-[#c2f800] px-7 py-4 text-sm font-bold text-black transition hover:bg-[#d0ff2e]"
           >
             BROWSE WORKOUTS
+            <FiArrowDown className="h-5 w-5" />
           </Link>
         </div>
 
