@@ -1,7 +1,9 @@
 import { getWorkouts } from "@/lib/api";
-import WorkoutCard from "./WorkoutCard";
+import WorkoutGrid from "./WorkoutGrid";
+
 const WorkoutLibrary = async () => {
   const workouts = await getWorkouts();
+
   return (
     <section id="library" className="px-4 py-16 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-[1800px]">
@@ -16,12 +18,8 @@ const WorkoutLibrary = async () => {
           </h2>
         </div>
 
-        {/* Workout Cards will come here */}
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {workouts.map((workout) => (
-            <WorkoutCard key={workout.id} workout={workout} />
-          ))}
-        </div>
+        {/* Workout Cards */}
+        <WorkoutGrid workouts={workouts} />
       </div>
     </section>
   );
