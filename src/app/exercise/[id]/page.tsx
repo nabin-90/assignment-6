@@ -1,3 +1,4 @@
+import AddToPlanButton from "@/components/AddToPlanButton";
 import { getWorkouts } from "@/lib/api";
 import Image from "next/image";
 import Link from "next/link";
@@ -57,21 +58,22 @@ const ExerciseDetailsPage = async ({ params }: ExerciseDetailsPageProps) => {
             </p>
 
             {/* Tags */}
-            <div className="mt-4 flex gap-2">
-              <span className="rounded-full bg-[#c2f800] px-3 py-1 text-xs font-medium text-black">
-                Chest
-              </span>
-
-              <span className="rounded-full bg-[#c2f800] px-3 py-1 text-xs font-medium text-black">
-                Arms
-              </span>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {workout.muscleGroups.map((muscle) => (
+                <span
+                  key={muscle}
+                  className="rounded-full bg-[#c2f800] px-3 py-1 text-xs font-medium text-black"
+                >
+                  {muscle}
+                </span>
+              ))}
             </div>
 
             {/* Workout Information */}
             <div className="mt-5 overflow-hidden rounded-xl border border-[#292c32] bg-[#1a1d22]">
               <div className="flex items-center justify-between border-b border-[#292c32] px-3 py-3 text-sm">
                 <span className="font-medium text-white">EQUIPMENT</span>
-                <span>Barbell, Bench</span>
+                <span>{workout.equipment}</span>
               </div>
 
               <div className="flex items-center justify-between border-b border-[#292c32] px-3 py-3 text-sm">
@@ -81,12 +83,12 @@ const ExerciseDetailsPage = async ({ params }: ExerciseDetailsPageProps) => {
 
               <div className="flex items-center justify-between border-b border-[#292c32] px-3 py-3 text-sm">
                 <span className="font-medium text-white">SETS</span>
-                <span>4</span>
+                <span>{workout.sets}</span>
               </div>
 
               <div className="flex items-center justify-between border-b border-[#292c32] px-3 py-3 text-sm">
                 <span className="font-medium text-white">REPS</span>
-                <span>6-8</span>
+                <span>{workout.reps}</span>
               </div>
 
               <div className="flex items-center justify-between border-b border-[#292c32] px-3 py-3 text-sm">
@@ -110,31 +112,17 @@ const ExerciseDetailsPage = async ({ params }: ExerciseDetailsPageProps) => {
               <h2 className="text-xl font-bold">INSTRUCTIONS</h2>
 
               <ol className="mt-3 space-y-2 text-sm leading-5 text-[#d0d1d5]">
-                <li>
-                  1. Lie on the bench with eyes under the bar and feet planted.
-                </li>
-
-                <li>
-                  2. Unrack with locked elbows and lower the bar to mid-chest.
-                </li>
-
-                <li>
-                  3. Press up in a slight arc until elbows lock without
-                  bouncing.
-                </li>
-
-                <li>
-                  4. Keep shoulder blades pinched and a natural arch in the
-                  back.
-                </li>
+                {workout.instructions.map((instruction, index) => (
+                  <li key={index}>
+                    {index + 1}. {instruction}
+                  </li>
+                ))}
               </ol>
             </div>
 
             {/* Buttons */}
             <div className="mt-auto flex items-center gap-3 pt-5">
-              <button className="rounded-lg bg-[#c2f800] px-4 py-2 text-sm font-semibold text-black transition hover:bg-[#a8d900]">
-                ⊞ Add to today&apos;s plan
-              </button>
+              <AddToPlanButton workout={workout} />
 
               <button className="rounded-lg border border-[#9b9da5] px-4 py-2 text-sm font-medium text-white transition hover:border-white">
                 ♧ Save for later

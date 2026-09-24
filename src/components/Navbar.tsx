@@ -1,4 +1,5 @@
 "use client";
+import { usePlan } from "@/context/PlanContext";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -7,6 +8,7 @@ import logo from "@/assets/images/logo.png";
 
 const Navbar = () => {
   const pathname = usePathname();
+  const { selectedWorkouts } = usePlan();
 
   const links = (
     <>
@@ -81,7 +83,7 @@ const Navbar = () => {
             <span>Plan</span>
 
             <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#c2f800] text-sm font-semibold text-black">
-              0
+              {selectedWorkouts.length}
             </span>
           </div>
 
