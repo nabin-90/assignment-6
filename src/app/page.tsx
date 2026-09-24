@@ -1,9 +1,20 @@
-export default function Home() {
+import Hero from "@/components/Hero";
+
+const HomePage = () => {
   return (
-    <main className="min-h-screen flex items-center justify-center">
-      <button className="btn btn-primary">
-        DaisyUI is working
-      </button>
-    </main>
+    <>
+      <Hero />
+
+      {/* Workout Library will come here later */}
+      <section id="library" className="min-h-screen">
+        <div className="mx-auto max-w-[1800px] px-4 py-20">
+          <h2 className="text-3xl font-bold text-white">
+            Workout Library
+          </h2>
+        </div>
+      </section>
+    </>
   );
-}
+};
+
+export default HomePage;
