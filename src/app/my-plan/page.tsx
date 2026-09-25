@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePlan } from "@/context/PlanContext";
+import toast from "react-hot-toast";
 
 const MyPlanPage = () => {
   const {
@@ -187,7 +188,10 @@ const MyPlanPage = () => {
 
                   {activeTab === "today" && (
                     <button
-                      onClick={() => markAsDone(workout)}
+                      onClick={() => {
+                        markAsDone(workout);
+                        toast.success("Workout marked as done");
+                      }}
                       className="rounded-full bg-[#c2f800] px-4 py-2 text-xs font-bold text-black transition hover:bg-[#a8d900]"
                     >
                       ✓ Mark as Done
@@ -195,11 +199,15 @@ const MyPlanPage = () => {
                   )}
 
                   <button
-                    onClick={() =>
-                      activeTab === "today"
-                        ? removeFromPlan(workout.id)
-                        : removeFromSaved(workout.id)
-                    }
+                    onClick={() => {
+                      if (activeTab === "today") {
+                        removeFromPlan(workout.id);
+                        toast.success("Workout removed from today's plan");
+                      } else {
+                        removeFromSaved(workout.id);
+                        toast.success("Workout removed from saved");
+                      }
+                    }}
                     className="px-1 text-lg text-[#858892] transition hover:text-white"
                     aria-label={`Remove ${workout.name}`}
                   >

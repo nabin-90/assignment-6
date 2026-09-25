@@ -30,6 +30,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <PlanProvider>
           <Navbar />
           {children}
+          <Toaster position="top-right" />
         </PlanProvider>
       </body>
     </html>

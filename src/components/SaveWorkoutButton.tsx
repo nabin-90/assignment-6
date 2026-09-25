@@ -1,5 +1,6 @@
 "use client";
 
+import toast from "react-hot-toast";
 import type { IWorkout } from "@/types/workout";
 import { usePlan } from "@/context/PlanContext";
 
@@ -7,17 +8,14 @@ interface SaveWorkoutButtonProps {
   workout: IWorkout;
 }
 
-const SaveWorkoutButton = ({
-  workout,
-}: SaveWorkoutButtonProps) => {
+const SaveWorkoutButton = ({ workout }: SaveWorkoutButtonProps) => {
   const { savedWorkouts, saveWorkout } = usePlan();
 
-  const isSaved = savedWorkouts.some(
-    (item) => item.id === workout.id,
-  );
+  const isSaved = savedWorkouts.some((item) => item.id === workout.id);
 
   const handleSave = () => {
     saveWorkout(workout);
+    toast.success("Saved for later");
   };
 
   return (

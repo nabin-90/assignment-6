@@ -1,5 +1,6 @@
 "use client";
 
+import toast from "react-hot-toast";
 import type { IWorkout } from "@/types/workout";
 import { usePlan } from "@/context/PlanContext";
 
@@ -7,17 +8,14 @@ interface AddToPlanButtonProps {
   workout: IWorkout;
 }
 
-const AddToPlanButton = ({
-  workout,
-}: AddToPlanButtonProps) => {
+const AddToPlanButton = ({ workout }: AddToPlanButtonProps) => {
   const { selectedWorkouts, addToPlan } = usePlan();
 
-  const isAdded = selectedWorkouts.some(
-    (item) => item.id === workout.id,
-  );
+  const isAdded = selectedWorkouts.some((item) => item.id === workout.id);
 
   const handleAddToPlan = () => {
     addToPlan(workout);
+    toast.success("Added to today's plan");
   };
 
   return (
