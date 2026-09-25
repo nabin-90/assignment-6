@@ -17,8 +17,24 @@ const MyPlanPage = () => {
 
   const [activeTab, setActiveTab] = useState<"today" | "saved">("today");
 
+  const [sortBy, setSortBy] = useState<"duration" | "calories" | "rating">(
+    "duration",
+  );
+
   const displayedWorkouts =
     activeTab === "today" ? selectedWorkouts : savedWorkouts;
+
+  const sortedWorkouts = [...displayedWorkouts].sort((a, b) => {
+    if (sortBy === "duration") {
+      return a.duration - b.duration;
+    }
+
+    if (sortBy === "calories") {
+      return a.caloriesBurned - b.caloriesBurned;
+    }
+
+    return b.rating - a.rating;
+  });
 
   const totalMinutes = displayedWorkouts.reduce(
     (total, workout) => total + workout.duration,
@@ -107,10 +123,25 @@ const MyPlanPage = () => {
               Sort By
             </span>
 
-            <button className="flex items-center gap-2 rounded-lg border border-[#292c32] bg-[#15171c] px-3 py-2 text-xs text-white">
-              Duration
-              <span className="text-[#858892]">⌄</span>
-            </button>
+            <div className="relative">
+              <select
+                value={sortBy}
+                onChange={(e) =>
+                  setSortBy(
+                    e.target.value as "duration" | "calories" | "rating",
+                  )
+                }
+                className="appearance-none rounded-lg border border-[#292c32] bg-[#15171c] px-3 py-2 pr-8 text-xs text-white outline-none"
+              >
+                <option value="duration">Duration</option>
+                <option value="calories">Calories</option>
+                <option value="rating">Rating</option>
+              </select>
+
+              <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[#858892]">
+                ⌄
+              </span>
+            </div>
           </div>
         </div>
 
@@ -133,7 +164,7 @@ const MyPlanPage = () => {
         ) : (
           /* Workout List */
           <div className="space-y-4">
-            {displayedWorkouts.map((workout) => (
+            {sortedWorkouts.map((workout) => (
               <div
                 key={workout.id}
                 className="flex flex-col gap-4 rounded-xl border border-[#292c32] bg-[#15171c] p-4 sm:flex-row sm:items-center"
