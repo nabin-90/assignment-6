@@ -1,4 +1,5 @@
 import AddToPlanButton from "@/components/AddToPlanButton";
+import SaveWorkoutButton from "@/components/SaveWorkoutButton";
 import { getWorkouts } from "@/lib/api";
 import Image from "next/image";
 import Link from "next/link";
@@ -124,9 +125,7 @@ const ExerciseDetailsPage = async ({ params }: ExerciseDetailsPageProps) => {
             <div className="mt-auto flex items-center gap-3 pt-5">
               <AddToPlanButton workout={workout} />
 
-              <button className="rounded-lg border border-[#9b9da5] px-4 py-2 text-sm font-medium text-white transition hover:border-white">
-                ♧ Save for later
-              </button>
+              <SaveWorkoutButton workout={workout} />
             </div>
           </div>
         </div>

@@ -8,7 +8,7 @@ import logo from "@/assets/images/logo.png";
 
 const Navbar = () => {
   const pathname = usePathname();
-  const { selectedWorkouts } = usePlan();
+  const { selectedWorkouts, savedWorkouts } = usePlan();
 
   const links = (
     <>
@@ -92,7 +92,7 @@ const Navbar = () => {
             <span>Saved</span>
 
             <span className="flex h-7 w-7 items-center justify-center rounded-full border border-[#3a3d44] text-sm text-[#b4b6bd]">
-              0
+              {savedWorkouts.length}
             </span>
           </div>
         </div>
