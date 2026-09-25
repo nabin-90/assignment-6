@@ -41,7 +41,7 @@ const Navbar = () => {
   );
 
   return (
-    <nav className="h-[114px] border-b border-[#1c1e22] bg-[#0c0d10] px-4 sm:px-6 lg:px-8">
+    <nav className="sticky top-0 z-50 h-[114px] border-b border-[#1c1e22] bg-[#0c0d10] px-4 sm:px-6 lg:px-8">
       <div className="mx-auto flex h-full max-w-[1800px] items-center justify-between">
         {/* Left Side */}
         <div className="flex items-center gap-3">
@@ -79,22 +79,28 @@ const Navbar = () => {
         {/* Status */}
         <div className="flex items-center gap-4 sm:gap-6 lg:gap-8">
           {/* Plan */}
-          <div className="flex items-center gap-2 text-sm text-[#9b9da5] sm:text-base">
+          <Link
+            href="/my-plan"
+            className="flex items-center gap-2 text-sm text-[#9b9da5] transition hover:text-white sm:text-base"
+          >
             <span>Plan</span>
 
             <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#c2f800] text-sm font-semibold text-black">
               {selectedWorkouts.length}
             </span>
-          </div>
+          </Link>
 
           {/* Saved */}
-          <div className="flex items-center gap-2 text-sm text-[#9b9da5] sm:text-base">
+          <Link
+            href="/my-plan"
+            className="flex items-center gap-2 text-sm text-[#9b9da5] transition hover:text-white sm:text-base"
+          >
             <span>Saved</span>
 
             <span className="flex h-7 w-7 items-center justify-center rounded-full border border-[#3a3d44] text-sm text-[#b4b6bd]">
               {savedWorkouts.length}
             </span>
-          </div>
+          </Link>
         </div>
       </div>
     </nav>

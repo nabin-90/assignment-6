@@ -3,6 +3,7 @@
 import toast from "react-hot-toast";
 import type { IWorkout } from "@/types/workout";
 import { usePlan } from "@/context/PlanContext";
+import { FiCalendar } from "react-icons/fi";
 
 interface AddToPlanButtonProps {
   workout: IWorkout;
@@ -22,13 +23,15 @@ const AddToPlanButton = ({ workout }: AddToPlanButtonProps) => {
     <button
       onClick={handleAddToPlan}
       disabled={isAdded}
-      className={`rounded-lg px-4 py-2 text-sm font-semibold transition ${
+      className={`inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold transition ${
         isAdded
           ? "cursor-not-allowed bg-[#292c32] text-[#9b9da5]"
           : "bg-[#c2f800] text-black hover:bg-[#a8d900]"
       }`}
     >
-      {isAdded ? "✓ Added to today's plan" : "⊞ Add to today's plan"}
+      <FiCalendar className="h-5 w-5" />
+
+      {isAdded ? "Added to today's plan" : "Add to today's plan"}
     </button>
   );
 };

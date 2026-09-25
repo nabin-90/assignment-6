@@ -3,6 +3,7 @@
 import toast from "react-hot-toast";
 import type { IWorkout } from "@/types/workout";
 import { usePlan } from "@/context/PlanContext";
+import { FiBookmark } from "react-icons/fi";
 
 interface SaveWorkoutButtonProps {
   workout: IWorkout;
@@ -22,13 +23,15 @@ const SaveWorkoutButton = ({ workout }: SaveWorkoutButtonProps) => {
     <button
       onClick={handleSave}
       disabled={isSaved}
-      className={`rounded-lg border px-4 py-2 text-sm font-medium transition ${
+      className={`inline-flex items-center gap-2 rounded-lg border px-4 py-2 text-sm font-medium transition ${
         isSaved
           ? "cursor-not-allowed border-[#292c32] text-[#9b9da5]"
           : "border-[#9b9da5] text-white hover:border-white"
       }`}
     >
-      {isSaved ? "✓ Saved" : "♧ Save for later"}
+      <FiBookmark className="h-5 w-5" />
+
+      {isSaved ? "Saved" : "Save for later"}
     </button>
   );
 };
